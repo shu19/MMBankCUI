@@ -2,7 +2,6 @@ package com.moneymoney.account.service;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Set;
 
 import com.moneymoney.account.SavingsAccount;
 import com.moneymoney.account.dao.SavingsAccountDAO;
@@ -75,11 +74,6 @@ public class SavingsAccountServiceImpl implements SavingsAccountService {
 		}
 	}
 
-	@Override
-	public SavingsAccount updateAccount(SavingsAccount account) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public SavingsAccount getAccountById(int accountNumber) throws ClassNotFoundException, SQLException, AccountNotFoundException {
@@ -93,8 +87,33 @@ public class SavingsAccountServiceImpl implements SavingsAccountService {
 	}
 
 	@Override
-	public Set getSortedAccounts(int choice) throws ClassNotFoundException, SQLException {
+	public List<SavingsAccount> getSortedAccounts(int choice) throws ClassNotFoundException, SQLException {
 		return savingsAccountDAO.getSortedAccounts(choice);
+	}
+
+	@Override
+	public int updateAccount(int accountnumber, String newAccountHolderName) throws ClassNotFoundException, SQLException {
+		
+		return savingsAccountDAO.updateAccount(accountnumber,newAccountHolderName);
+	}
+
+	@Override
+	public double checkAccountBalance(int accountnumber) throws ClassNotFoundException, SQLException, AccountNotFoundException {
+			
+		return savingsAccountDAO.getAccountBalance(accountnumber);
+	}
+
+	@Override
+	public SavingsAccount getAccountByHolderName(String accountHolderName) throws ClassNotFoundException, AccountNotFoundException, SQLException {
+		
+		return savingsAccountDAO.getAccountByHolderName(accountHolderName);
+	}
+
+	@Override
+	public List<SavingsAccount> getAllSavingsAccountInBalanceRange(
+			double minimumAccountBalance, double maximumAccountBalance) throws ClassNotFoundException, SQLException, AccountNotFoundException {
+
+		return savingsAccountDAO.getAllSavingsAccountInBalanceRange(minimumAccountBalance,maximumAccountBalance);
 	}
 
 }

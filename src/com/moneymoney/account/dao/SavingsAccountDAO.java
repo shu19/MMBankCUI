@@ -2,7 +2,6 @@ package com.moneymoney.account.dao;
 
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Set;
 
 import com.moneymoney.account.SavingsAccount;
 import com.moneymoney.exception.AccountNotFoundException;
@@ -10,12 +9,17 @@ import com.moneymoney.exception.AccountNotFoundException;
 public interface SavingsAccountDAO {
 	
 	SavingsAccount createNewAccount(SavingsAccount account) throws ClassNotFoundException, SQLException;
-	SavingsAccount updateAccount(SavingsAccount account);
+//	SavingsAccount updateAccount(SavingsAccount account);
 	SavingsAccount getAccountById(int accountNumber) throws ClassNotFoundException, SQLException, AccountNotFoundException;
 	boolean deleteAccount(int accountNumber) throws ClassNotFoundException, SQLException, AccountNotFoundException;
 	List<SavingsAccount> getAllSavingsAccount() throws ClassNotFoundException, SQLException;
 	void updateBalance(int accountNumber, double currentBalance) throws ClassNotFoundException, SQLException;
-	Set<SavingsAccount> getSortedAccounts(int choice) throws ClassNotFoundException, SQLException;
+	List<SavingsAccount> getSortedAccounts(int choice) throws ClassNotFoundException, SQLException;
+	int updateAccount(int accountnumber, String newAccountHolderName) throws ClassNotFoundException, SQLException;
+	double getAccountBalance(int accountnumber) throws ClassNotFoundException, SQLException, AccountNotFoundException;
+	SavingsAccount getAccountByHolderName(String accountHolderName) throws AccountNotFoundException, ClassNotFoundException, SQLException;
+	List<SavingsAccount> getAllSavingsAccountInBalanceRange(
+			double minimumAccountBalance, double maximumAccountBalance) throws ClassNotFoundException, SQLException, AccountNotFoundException;
 	
 	
 }

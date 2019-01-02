@@ -1,6 +1,6 @@
 package com.moneymoney.account;
 
-public class SavingsAccount {
+public class SavingsAccount implements Comparable<SavingsAccount>{
 	private boolean salary;
 	private BankAccount bankAccount;
 
@@ -36,6 +36,10 @@ public class SavingsAccount {
 	@Override
 	public String toString() {
 		return "SavingsAccount [salary=" + salary + ", bankAccount=" + bankAccount + "]";
+	}
+	@Override
+	public int compareTo(SavingsAccount o) {		
+		return this.getBankAccount().getAccountNumber()-o.getBankAccount().getAccountNumber();
 	}
 }
 
